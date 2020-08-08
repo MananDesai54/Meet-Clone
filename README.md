@@ -1,2 +1,2 @@
 # Meet-Clone
-Online Chatting and Video calling app.
+Online Video Calling and Chatting app.
