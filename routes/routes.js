@@ -6,8 +6,8 @@ router.get('/start-meeting',(req,res)=>{
 })
 
 router.get('/',(req,res)=>{
-    // res.render('home');
-    res.redirect(`/${uuidV4()}`)
+    res.render('home');
+    // res.redirect(`/${uuidV4()}`)
 });
 
 router.get('/:roomId',(req,res)=>{
