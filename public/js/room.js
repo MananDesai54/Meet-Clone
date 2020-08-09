@@ -5,12 +5,14 @@ const myPeer = new Peer(undefined,{
     host:'/'
 });
 
-const peers = {};
+const peers = {};//store all users that are in
 
+//join use message
 myPeer.on('open',id=>{
     socket.emit('join',ROOM_ID,id);
 });
 
+//when use disconnect close connection and remove video
 socket.on('user-disconnected',(userId)=>{
     console.log(userId,'Disconnected');
     if(peers[userId]) {
@@ -22,6 +24,7 @@ const videoGrid = document.querySelector('.video-grid');
 const myVideo = document.createElement('video');
 myVideo.muted = true;
 
+//show video
 navigator.mediaDevices.getUserMedia({
     video:true,
     audio:false
@@ -44,6 +47,7 @@ navigator.mediaDevices.getUserMedia({
     });
 });
 
+//to connect user with others
 function connectToStream(userId,stream) {
     // console.log(userId,stream);
     const call = myPeer.call(userId,stream);
@@ -57,6 +61,7 @@ function connectToStream(userId,stream) {
     peers[userId] = call;
 }
 
+//to add video to screen 
 function addVideoStream(video,stream) {
     video.srcObject = stream;
     video.addEventListener('loadedmetadata',() => {

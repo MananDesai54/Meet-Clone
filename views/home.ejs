@@ -3,9 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Video Chat</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <a href="/start-meeting">Start Meeting</a>
+    <header>
+        <img src="images/logo.png" alt="logo">
+        <div class="name">
+            Meet
+        </div>
+    </header>
+    <section>
+        <div class="about-join">
+            <div class="greet" style="font-size: 2.8rem;" ></div>
+            <div class="text">
+                Premium video meetings. Now free for everyone.
+            </div>
+            <div class="text2" style="color: #999;width:70%;margin:2rem 0;">
+                We re-engineered the service that we built for secure business meetings, Google Meet, to make it free and available for all.
+            </div>
+            <div class="options">
+                <a href="/start-meeting" class="new-meeting">
+                    <i class="material-icons">
+                        video_call
+                    </i>
+                    New Meeting
+                </a>
+                <form class="join-meeting" action="/join-meeting" method="post">
+                    <div class="form-input">
+                        <i class="material-icons">
+                            keyboard
+                        </i>
+                        <input type="text" placeholder="Enter Code or Link" name="id">
+                    </div>
+                    <button type="submit" id="submitBtn" disabled>Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="image">
+            <img src="images/image.jpg" alt="meet">
+        </div>
+    </section>
+    <script src="js/home.js"></script>
 </body>
 </html>

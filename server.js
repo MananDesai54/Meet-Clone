@@ -13,6 +13,9 @@ const peerServer = ExpressPeerServer(server,{
 });
 
 app.use('/peerjs',peerServer);
+app.use(bodyParser.urlencoded({
+    extended:false
+}))
 
 //template engine and static files
 app.set('view engine','ejs');

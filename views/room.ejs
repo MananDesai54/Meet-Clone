@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room</title>
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/room.css">
     <script>
         const ROOM_ID = "<%= roomId %> ";
@@ -11,8 +12,22 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
     <script src="js/room.js" defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+    <div class="tools">
+        <div class="tool peoples">
+            <i class="material-icons">
+                peoples
+            </i>
+        </div>
+        <div class="chat tool">
+            <i class="material-icons">
+                chat
+            </i>
+        </div>
+        <div class="you"></div>
+    </div>
     <div class="screen">
         <div class="video-grid">
 

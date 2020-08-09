@@ -5,6 +5,11 @@ router.get('/start-meeting',(req,res)=>{
     res.redirect(`/${uuidV4()}`)
 })
 
+router.post('/join-meeting',(req,res)=>{
+    console.log(req.body);
+    res.redirect(`/${req.body.id}`);
+})
+
 router.get('/',(req,res)=>{
     res.render('home');
     // res.redirect(`/${uuidV4()}`)
