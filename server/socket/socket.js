@@ -6,6 +6,9 @@ module.exports = function (socket) {
         
         socket.on('disconnect',()=>{
             socket.to(roomId).broadcast.emit('user-disconnected',userId);
+        });
+        socket.on('send-message',(message)=>{
+            console.log(message);
         })
     })
 }

@@ -1,0 +1,106 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 1rem;
+}
+header .logo {
+    display: flex;
+    align-items: center;
+}
+header img {
+    transform: scale(0.5) translateX(-100px);
+    margin: 0 10px;
+}
+header .name {
+    transform: translateX(-120px);
+    color: #999;
+    font-size: 1.3rem;
+}
+header .username {
+    color: #555;
+}
+.setup {
+    height: 90vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.setup .video {
+    width: 50vmax;
+    height: 30vmax;
+    border-radius: 10px;
+    background: #222;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transform: scaleX(-1);
+    position: relative;
+}
+.setup .controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    padding: 1rem;
+}
+.setup .join {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.setup video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.setup a {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    border-radius: 30px;
+    background: #00796b;
+    color: white;
+    text-decoration: none;
+}
+.btns {
+    display: flex;
+}
+.btns div {
+    margin: 0 0.4rem;
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    transition: all 400ms;
+    cursor: pointer;
+}
+.btns div:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background: rgba(238, 238, 238,0.3);
+    transition: all 400ms;
+}
+.btns div.disable {
+    background: red;
+    color: white;
+    transition: all 400ms;
+    border: 1px solid red;
+}
+.btn div.disable:hover {
+    background: #6b0303 !important;
+}
+.voice {
+    display: flex;
+}
+.voice .sound {
+    height: 8px;
+    width: 8px;
+    margin: 0 0.1rem;
+    background: #64ffda;
+    border-radius: 50%;
+}

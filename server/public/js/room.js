@@ -4,11 +4,13 @@ const myPeer = new Peer(undefined,{
     port:'5000',
     host:'/'
 });
+let myVideoStream,userId;
 
 const peers = {};//store all users that are in
 
 //join use message
 myPeer.on('open',id=>{
+    userId = id;
     socket.emit('join',ROOM_ID,id);
 });
 
@@ -23,7 +25,6 @@ socket.on('user-disconnected',(userId)=>{
 const videoGrid = document.querySelector('.video-grid');
 const myVideo = document.createElement('video');
 myVideo.muted = true;
-let myVideoStream;
 
 //show video
 navigator.mediaDevices.getUserMedia({
@@ -32,6 +33,8 @@ navigator.mediaDevices.getUserMedia({
 }).then(stream => {
     myVideoStream = stream;
     addVideoStream(myVideo,stream,true);
+    myVideoStream.getAudioTracks()[0].enabled = AUDIO;
+    myVideoStream.getVideoTracks()[0].enabled = VIDEO;
 
     //answer the call
     myPeer.on('call',call=>{
@@ -86,6 +89,18 @@ function toggleVideoStream() {
     console.log(enabled);
     myVideoStream.getVideoTracks()[0].enabled = !enabled;
 }
+
+//chatting
+const chatForm = document.getElementById('send-message');
+chatForm.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    console.log(chatForm.message.value);
+    socket.emit('send-message',{
+        userId,
+        message:chatForm.message.value
+    });
+    chatForm.message.value = '';
+})
 
 
 //styling
@@ -154,11 +169,12 @@ closeChat.addEventListener('click',()=>{
 })
 
 const message = document.getElementById('message');
-const sendBtn = document.getElementById('send-message');
-message.addEventListener('input',()=>{
-    if(message.value.trim() !== '') {
+const sendBtn = document.getElementById('send-message-btn');
+
+message.addEventListener('input',(e)=>{
+    if(e.target.value.trim() !== '') {
         sendBtn.disabled = false;
     } else {
         sendBtn.disabled = true;
     }
-})
+});

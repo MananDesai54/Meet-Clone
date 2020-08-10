@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Up</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/setup.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/images/logo.png" alt="logo">
+            <div class="name">
+                Meet
+            </div>
+        </div>
+        <h2 class="username">
+            <%= userName %> 
+        </h2>
+    </header>
+    <div class="setup">
+        <div class="video" id="video">
+            <div class="controls">
+                <div class="voice">
+                    <div class="sound one"></div>
+                    <div class="sound two"></div>
+                    <div class="sound three"></div>
+                </div>
+                <div class="btns">
+                    <div class="toggle-mic">
+                        <i class="material-icons">
+                            mic_none
+                        </i>
+                    </div>
+                    <div class="toggle-video">
+                        <i class="material-icons">
+                            videocam
+                        </i>
+                    </div>
+                </div>
+                <div class="options" style="color: white;font-size:1rem">
+                    <i class="material-icons">
+                        more_vert
+                    </i>
+                </div>
+            </div>
+        </div> 
+        <div class="join">
+            <h2>
+                Ready to join?
+            </h2>
+            <a href="/<%= `room/${roomId}&${userName}` %> " id="join-now-btn">
+                Join now
+            </a>
+        </div>
+    </div> 
+    <script src="/js/setup.js"></script>
+</body>
+</html>

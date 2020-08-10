@@ -20,6 +20,8 @@
 const userName = prompt('Enter Your Name');
 document.querySelector('.greet').textContent = `Welcome , ${userName}`;
 
+document.getElementById('new-meeting').setAttribute('href',`/new-meeting/${userName}`);
+
 const id = document.querySelector('.form-input input');
 id.addEventListener('input',(e)=>{
     if(e.target.value.trim() !== '') {

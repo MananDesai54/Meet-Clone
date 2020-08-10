@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/room.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/room.css">
     <script>
-        const ROOM_ID = "<%= roomId %> ";
+        const ROOM_ID = "<%= roomId %>";
+        const NAME = "<%= userName %>";
+        const VIDEO = "<%= video %>" === "true";
+        const AUDIO = "<%= audio %>" === "true";
+        console.log(ROOM_ID,NAME,AUDIO,VIDEO);
     </script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
-    <script src="js/room.js" defer></script>
+    <script src="/js/room.js" defer></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
@@ -38,21 +42,37 @@
                     Test Meeting <%= ' ' %> <i class="material-icons">keyboard_arrow_up</i> 
                 </div>
                 <div class="btns flex">
-                    <div class="toggle-mic">
-                        <i class="material-icons">
-                            mic_none
-                        </i>
-                    </div>
+                    <% if(audio) { %>
+                        <div class="toggle-mic">
+                            <i class="material-icons">
+                                mic_none
+                            </i>
+                        </div>
+                    <% }else { %>
+                        <div class="toggle-mic disable">
+                            <i class="material-icons">
+                                mic_off
+                            </i>
+                        </div>
+                    <% } %>
                     <div class="end-call">
                         <i class="material-icons">
                             call_end
                         </i>
                     </div>
-                    <div class="toggle-video">
-                        <i class="material-icons">
-                            videocam
-                        </i>
-                    </div>
+                    <% if(video) { %>
+                        <div class="toggle-video">
+                            <i class="material-icons">
+                                videocam
+                            </i>
+                        </div>
+                    <% }else { %>
+                        <div class="toggle-video disable">
+                            <i class="material-icons">
+                                videocam_off
+                            </i>
+                        </div>
+                    <% } %>
                     <div class="toggle-video" title="Take Screenshot">
                         <i class="material-icons">
                             camera
@@ -103,9 +123,9 @@
             <div class="chat-messages">
 
             </div>
-            <form class="send-message">
+            <form class="send-message" id="send-message">
                 <input type="text" name="message" id="message" placeholder="Send a message to everyone">
-                <button type="submit" id="send-message" disabled>
+                <button type="submit" id="send-message-btn" disabled>
                     <i class="material-icons">
                         send
                     </i>
