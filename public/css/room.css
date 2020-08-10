@@ -1,13 +1,23 @@
+* {
+    outline: none;
+}
+body {
+    height: 100vh;
+    overflow: hidden;
+}
 .video-grid {
     height: 100vh;
     width: 100vw;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,33%);
+    grid-auto-rows: 33%;
+    place-content: center;
     background: #333;
+    overflow: hidden;
 }
 video {
     height: 100%;
     width: 100%;
-    background: #eee;
     object-fit: cover;
     transform: scaleX(-1);
 }
@@ -15,6 +25,7 @@ video {
     position: fixed;
     display: flex;
     justify-content: center;
+    align-items: center;
     right: 0;
     z-index: 100;
     padding-left: 5px;
@@ -24,11 +35,83 @@ video {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .tools .tool {
-    padding: 10px;
+    padding: 0.5rem 1.5rem;
     cursor: pointer;
+    transition: all 400ms;
+}
+.tools .tool:hover {
+    background: #eee;
+    transition: all 400ms;
 }
 .tools .you {
     width: 100px;
-    background: rgb(47, 107, 134);
-    z-index: 1;
+    height: 50px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    transform: translateY(-100%);
+}
+.flex {
+    align-items: center;
+    display: flex;
+    padding: 1rem;
+}
+.cc-present {
+    padding: 0;
+}
+.btns div {
+    margin: 0 1rem;
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    color: #555;
+    cursor: pointer;
+    transition: all 400ms;
+}
+.btns div:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    background: #ddd;
+    transition: all 400ms;
+}
+.btns .end-call {
+    color: red;
+}
+.btns div.disable {
+    background: red;
+    color: white;
+    transition: all 400ms;
+    border: 1px solid red;
+}
+.btn div.disable:hover {
+    background: #c40404;
+}
+.title {
+    transition: all 400ms;
+}
+.title:hover {
+    cursor: pointer;
+    background: #eee;
+    transition: all 400ms;
+}
+.captions , .present {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 400ms;
+    cursor: pointer;
+    height: 100%;
+    justify-content: center;
+    padding: 0 1rem;
+}
+.captions i, .present i {
+    color: teal;
+}
+.captions:hover , .present:hover {
+    background: #eee;
+    transition: all 400ms;
 }

@@ -23,13 +23,15 @@ socket.on('user-disconnected',(userId)=>{
 const videoGrid = document.querySelector('.video-grid');
 const myVideo = document.createElement('video');
 myVideo.muted = true;
+let myVideoStream;
 
 //show video
 navigator.mediaDevices.getUserMedia({
     video:true,
-    audio:false
+    audio:true
 }).then(stream => {
-    addVideoStream(myVideo,stream);
+    myVideoStream = stream;
+    addVideoStream(myVideo,stream,true);
 
     //answer the call
     myPeer.on('call',call=>{
@@ -38,7 +40,7 @@ navigator.mediaDevices.getUserMedia({
         call.on('stream',userMediaStream=>{
             addVideoStream(video,userMediaStream);
         })
-    })
+    });
 
     //other user connected
     socket.on('user-connected',(userId)=>{
@@ -62,10 +64,66 @@ function connectToStream(userId,stream) {
 }
 
 //to add video to screen 
-function addVideoStream(video,stream) {
+function addVideoStream(video,stream,own=false) {
     video.srcObject = stream;
     video.addEventListener('loadedmetadata',() => {
         video.play();
-        videoGrid.appendChild(video);
+        if(!own) {
+            videoGrid.appendChild(video);
+        }else {
+            document.querySelector('.you').appendChild(video);
+        }
     });
 }
+
+function toggleMute() {
+    const enabled = myVideoStream.getAudioTracks()[0].enabled;
+    myVideoStream.getAudioTracks()[0].enabled = !enabled;
+}
+
+function toggleVideoStream() {
+    const enabled = myVideoStream.getVideoTracks()[0].enabled;
+    console.log(enabled);
+    myVideoStream.getVideoTracks()[0].enabled = !enabled;
+}
+
+
+//styling
+const toggleMic = document.querySelector('.toggle-mic');
+const toggleVideo = document.querySelector('.toggle-video');
+
+toggleMic.addEventListener('click',()=>{
+    toggleMute();
+    toggleMic.classList.toggle('disable');
+    if(toggleMic.classList.contains('disable')) {
+        toggleMic.innerHTML = `
+            <i class="material-icons">
+                mic_off
+            </i>
+        `;
+    }else {
+        toggleMic.innerHTML = `
+            <i class="material-icons">
+                mic_none
+            </i>
+        `;
+    }
+})
+
+toggleVideo.addEventListener('click',()=>{
+    toggleVideoStream();
+    toggleVideo.classList.toggle('disable');
+    if(toggleVideo.classList.contains('disable')) {
+        toggleVideo.innerHTML = `
+            <i class="material-icons">
+                videocam_off
+            </i>
+        `;
+    }else {
+        toggleVideo.innerHTML = `
+            <i class="material-icons">
+                videocam
+            </i>
+        `;
+    }
+})
