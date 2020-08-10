@@ -126,4 +126,39 @@ toggleVideo.addEventListener('click',()=>{
             </i>
         `;
     }
+});
+
+const tools = document.querySelector('.tools');
+const main = document.querySelector('.screen main');
+const chatRoom = document.querySelector('.chat-room');
+const closeChat = document.getElementById('close-chat');
+
+tools.addEventListener('click',(e)=>{
+    if (e.target.id === 'chat' || e.target.id === 'people') {
+        tools.style.top = '-100px';
+        main.style.width = '100%';
+        chatRoom.style.width = '450px';
+        chatRoom.style.transitionDelay = '100ms';
+        chatRoom.style.padding = '1rem';
+        closeChat.style.display = 'block';
+    }
+});
+
+closeChat.addEventListener('click',()=>{
+    tools.style.top = '0px';
+    tools.style.transitionDelay = '100ms';
+    main.style.width = '100vw';
+    chatRoom.style.width = '0vw';
+    chatRoom.style.padding = '0';
+    closeChat.style.display = 'none';
+})
+
+const message = document.getElementById('message');
+const sendBtn = document.getElementById('send-message');
+message.addEventListener('input',()=>{
+    if(message.value.trim() !== '') {
+        sendBtn.disabled = false;
+    } else {
+        sendBtn.disabled = true;
+    }
 })

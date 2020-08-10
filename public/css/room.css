@@ -5,14 +5,25 @@ body {
     height: 100vh;
     overflow: hidden;
 }
-.video-grid {
-    height: 100vh;
+.screen {
+    /* display: grid; */
+    display: flex;
     width: 100vw;
+    height: 100vh;
+    /* grid-template-columns: 4fr 1fr; */
+}
+.screen main {
+    width: 100%;
+    transition: all 400ms;
+}
+.video-grid {
+    height: 100%;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit,33%);
     grid-auto-rows: 33%;
     place-content: center;
-    background: #333;
+    background: #222;
     overflow: hidden;
 }
 video {
@@ -26,6 +37,7 @@ video {
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0;
     right: 0;
     z-index: 100;
     padding-left: 5px;
@@ -33,6 +45,7 @@ video {
     color: #555;
     border-bottom-left-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 400ms;
 }
 .tools .tool {
     padding: 0.5rem 1.5rem;
@@ -52,7 +65,11 @@ video {
     display: flex;
     justify-content: space-between;
     background: white;
+    transition: all 400ms;
+}
+body:hover .controls {
     transform: translateY(-100%);
+    transition: all 400ms;
 }
 .flex {
     align-items: center;
@@ -63,7 +80,7 @@ video {
     padding: 0;
 }
 .btns div {
-    margin: 0 1rem;
+    margin: 0 0.05rem;
     padding: 0.8rem;
     display: flex;
     align-items: center;
@@ -74,7 +91,7 @@ video {
     transition: all 400ms;
 }
 .btns div:hover {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     background: #ddd;
     transition: all 400ms;
 }
@@ -88,7 +105,7 @@ video {
     border: 1px solid red;
 }
 .btn div.disable:hover {
-    background: #c40404;
+    background: #6b0303 !important;
 }
 .title {
     transition: all 400ms;
@@ -114,4 +131,86 @@ video {
 .captions:hover , .present:hover {
     background: #eee;
     transition: all 400ms;
+}
+
+.chat-room {
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 0vw;
+    z-index: 2;
+    transition: all 400ms;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.chat-room #close-chat {
+    position: absolute; 
+    right: 10px;
+    top: 10px;
+    transform: scale(1.2);
+    color: #555;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 400ms;
+    cursor: pointer;
+}
+.chat-room #close-chat:hover {
+    background: #eee;
+    transition: all 400ms;
+}
+.chat-room h3 {
+    color: #555;
+}
+.chat-room .select {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+    color: #555;
+}
+.chat-room .select div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    height: 100%;
+}
+.chat-room .select div:hover {
+    background: rgba(1, 77, 68,0.1);
+}
+.chat-room .select div.selected {
+    border-bottom: 2px solid #014d44;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.chat-messages {
+    flex: 1;
+}
+.send-message {
+    display: flex;
+    align-items: center;
+}
+.send-message input {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid #eee;
+    padding: 0.5rem;
+}
+.send-message input::placeholder {
+    color: #ddd;
+}
+.send-message input:focus {
+    border-bottom: 2px solid #014d44;
+    transition: all 400ms;
+}
+.send-message button {
+    border: none;
+    background: none;
+    color: #014d44;
+    cursor: pointer;
+}
+.send-message button:disabled {
+    color: #ddd;
 }

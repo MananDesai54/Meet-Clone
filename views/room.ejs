@@ -16,61 +16,101 @@
 </head>
 <body>
     <div class="tools">
-        <div class="tool peoples">
-            <i class="material-icons">
+        <div class="tool peoples" id="people">
+            <i class="material-icons" style="pointer-events: none;">
                 people_outline
             </i>
         </div>
-        <div class="chat tool">
-            <i class="material-icons">
+        <div class="chat tool" id="chat">
+            <i class="material-icons" style="pointer-events: none;">
                 chat
             </i>
         </div>
         <div class="you"></div>
     </div>
     <div class="screen">
-        <div class="video-grid">
+        <main>
+            <div class="video-grid">
 
-        </div>
-        <div class="controls">
-            <div class="title flex">
-                Test Meeting <%= ' ' %> <i class="material-icons">keyboard_arrow_up</i> 
             </div>
-            <div class="btns flex">
-                <div class="toggle-mic">
-                    <i class="material-icons">
-                        mic_none
-                    </i>
+            <div class="controls">
+                <div class="title flex">
+                    Test Meeting <%= ' ' %> <i class="material-icons">keyboard_arrow_up</i> 
                 </div>
-                <div class="end-call">
-                    <i class="material-icons">
-                        call_end
-                    </i>
+                <div class="btns flex">
+                    <div class="toggle-mic">
+                        <i class="material-icons">
+                            mic_none
+                        </i>
+                    </div>
+                    <div class="end-call">
+                        <i class="material-icons">
+                            call_end
+                        </i>
+                    </div>
+                    <div class="toggle-video">
+                        <i class="material-icons">
+                            videocam
+                        </i>
+                    </div>
+                    <div class="toggle-video" title="Take Screenshot">
+                        <i class="material-icons">
+                            camera
+                        </i>
+                    </div>
                 </div>
-                <div class="toggle-video">
-                    <i class="material-icons">
-                        videocam
-                    </i>
+                <div class="cc-present flex">
+                    <div class="captions">
+                        <i class="material-icons">
+                            closed_caption
+                        </i>
+                        <p>
+                            Turn On Caption
+                        </p>
+                    </div>
+                    <div class="present">
+                        <i class="material-icons">
+                            present_to_all
+                        </i>
+                        <p>
+                            Present To all
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="cc-present flex">
-                <div class="captions">
-                    <i class="material-icons">
-                        closed_caption
+        </main>
+        <div class="chat-room">
+            <i class="material-icons" id="close-chat">
+                close
+            </i>
+            <h3>
+                Meeting details
+            </h3>
+            <div class="select">
+                <div class="people selected" id="people">
+                    <i class="material-icons" style="margin-right: 2px;">
+                        people_outline
                     </i>
-                    <p>
-                        Turn On Caption
-                    </p>
+                    <p>People(1)</p>
                 </div>
-                <div class="present">
+                <div class="chat" id="chat" style="margin-right: 2px;">
                     <i class="material-icons">
-                        present_to_all
+                        chat
                     </i>
-                    <p>
-                        Present To all
-                    </p>
+                    <p>Chat</p>
                 </div>
             </div>
+            <div class="chat-messages">
+
+            </div>
+            <form class="send-message">
+                <input type="text" name="message" id="message" placeholder="Send a message to everyone">
+                <button type="submit" id="send-message" disabled>
+                    <i class="material-icons">
+                        send
+                    </i>
+                </button>
+            </form>
         </div>
     </div>
 </body>
