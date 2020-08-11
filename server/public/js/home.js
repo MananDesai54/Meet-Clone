@@ -19,6 +19,7 @@
 // }
 const userName = prompt('Enter Your Name');
 document.querySelector('.greet').textContent = `Welcome , ${userName}`;
+document.querySelector('header .username').textContent = userName;
 
 document.getElementById('new-meeting').setAttribute('href',`/new-meeting/${userName}`);
 
