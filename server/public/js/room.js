@@ -29,13 +29,13 @@ myVideo.muted = true;
 
 //show video
 navigator.mediaDevices.getUserMedia({
-    video:true,
+    video:false,
     audio:true
 }).then(stream => {
     myVideoStream = stream;
     addVideoStream(myVideo,stream,true);
-    myVideoStream.getAudioTracks()[0].enabled = AUDIO;
-    myVideoStream.getVideoTracks()[0].enabled = VIDEO;
+    myVideoStream.getAudioTracks()[0].enabled = localStorage.getItem('audio');
+    // myVideoStream.getVideoTracks()[0].enabled = localStorage.getItem('video');
 
     //answer the call
     myPeer.on('call',call=>{
@@ -87,7 +87,6 @@ function toggleMute() {
 
 function toggleVideoStream() {
     const enabled = myVideoStream.getVideoTracks()[0].enabled;
-    console.log(enabled);
     myVideoStream.getVideoTracks()[0].enabled = !enabled;
 }
 
@@ -107,6 +106,7 @@ socket.on('receive-message', message =>{
         <div class="user">
             <div class="name">
                 ${message.userName.charAt(0).toUpperCase()+message.userName.slice(1)}
+                <span> ${new Date().getHours()} : ${new Date().getMinutes()} </span>
             </div>
             <div class="message">
                 ${message.message}
