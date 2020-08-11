@@ -5,6 +5,7 @@ const myPeer = new Peer(undefined,{
     host:'/'
 });
 let myVideoStream,userId;
+const chatMessages = document.getElementById('chat-messages');
 
 const peers = {};//store all users that are in
 
@@ -96,10 +97,23 @@ chatForm.addEventListener('submit',(e)=>{
     e.preventDefault();
     console.log(chatForm.message.value);
     socket.emit('send-message',{
-        userId,
+        userName:NAME,
         message:chatForm.message.value
     });
     chatForm.message.value = '';
+})
+socket.on('receive-message', message =>{
+    chatMessages.innerHTML += `
+        <div class="user">
+            <div class="name">
+                ${message.userName.charAt(0).toUpperCase()+message.userName.slice(1)}
+            </div>
+            <div class="message">
+                ${message.message}
+            </div>
+        </div>
+    `;
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 })
 
 
@@ -170,6 +184,7 @@ closeChat.addEventListener('click',()=>{
 
 const message = document.getElementById('message');
 const sendBtn = document.getElementById('send-message-btn');
+sendBtn.disabled = true;
 
 message.addEventListener('input',(e)=>{
     if(e.target.value.trim() !== '') {
@@ -178,3 +193,9 @@ message.addEventListener('input',(e)=>{
         sendBtn.disabled = true;
     }
 });
+
+const endCallBtn = document.getElementById('end-call');
+endCallBtn.addEventListener('click',()=>{
+    // peers[userId].close();
+    window.location.replace('/');
+})

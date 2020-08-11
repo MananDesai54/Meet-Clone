@@ -181,12 +181,31 @@ body:hover .controls {
     background: rgba(1, 77, 68,0.1);
 }
 .chat-room .select div.selected {
-    border-bottom: 2px solid #014d44;
+    border-bottom: 2px solid #00796b;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 .chat-messages {
     flex: 1;
+    display: flex;
+    flex-direction:column;
+    /* justify-content: flex-end; */
+    align-items: flex-end;
+    overflow: scroll;
+    flex-wrap: wrap;
+}
+.chat-messages .user {
+    width: 100%;
+    background: #eee;
+    margin: 0.5rem 0;
+}
+.chat-messages .user .name {
+    font-size: 0.8rem;
+}
+.chat-messages .message {
+    font-size: 0.7rem;
+    color: #555;
+    margin-top: 0.2rem;
 }
 .send-message {
     display: flex;
@@ -202,13 +221,13 @@ body:hover .controls {
     color: #ddd;
 }
 .send-message input:focus {
-    border-bottom: 2px solid #014d44;
+    border-bottom: 2px solid #00796b;
     transition: all 400ms;
 }
 .send-message button {
     border: none;
     background: none;
-    color: #014d44;
+    color: #00796b;
     cursor: pointer;display: flex;
     align-items: center;
     justify-content: center;
@@ -222,4 +241,5 @@ body:hover .controls {
 }
 .send-message button:disabled {
     color: #ddd;
+    cursor: not-allowed;
 }

@@ -8,7 +8,8 @@ module.exports = function (socket) {
             socket.to(roomId).broadcast.emit('user-disconnected',userId);
         });
         socket.on('send-message',(message)=>{
-            console.log(message);
+            socket.emit('receive-message',message);
+            socket.to(roomId).broadcast.emit('receive-message',message);
         })
     })
 }

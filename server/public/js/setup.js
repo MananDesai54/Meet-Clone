@@ -20,8 +20,9 @@ navigator.mediaDevices.getUserMedia({
     myVideo.srcObject = stream;
     myVideo.addEventListener('loadedmetadata',()=>{
         myVideo.play();
-        video.appendChild(myVideo);
-    })
+        video.insertBefore(myVideo,video.childNodes[0]);
+    });
+    document.querySelector('.controls').style.opacity = 1;
 });
 
 function setHref() {
