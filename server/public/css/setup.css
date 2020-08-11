@@ -98,3 +98,13 @@ header .username {
     background: #64ffda;
     border-radius: 50%;
 }
+
+@media(max-width:1000px) {
+    .setup {
+        flex-direction: column;
+    }
+    .setup .video {
+        width: 90vw;
+        height: 60vh;
+    }
+}

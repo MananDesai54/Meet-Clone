@@ -1,3 +1,17 @@
+//authorize
+if(!localStorage.getItem('name')) {
+    const getName = () => {
+        let name = prompt('Enter Your name');
+        if(!name) {
+            alert('Please Provide A name');
+            getName();
+        }
+        return name;
+    }
+    
+    localStorage.setItem('name',getName());
+}
+
 const socket = io('/');
 const myPeer = new Peer(undefined,{
     path:'/peerjs',
@@ -29,7 +43,7 @@ myVideo.muted = true;
 
 //show video
 navigator.mediaDevices.getUserMedia({
-    video:false,
+    video:true,
     audio:true
 }).then(stream => {
     myVideoStream = stream;
@@ -94,9 +108,8 @@ function toggleVideoStream() {
 const chatForm = document.getElementById('send-message');
 chatForm.addEventListener('submit',(e)=>{
     e.preventDefault();
-    console.log(chatForm.message.value);
     socket.emit('send-message',{
-        userName:NAME,
+        userName:localStorage.getItem('name'),
         message:chatForm.message.value
     });
     chatForm.message.value = '';
@@ -121,21 +134,29 @@ socket.on('receive-message', message =>{
 const toggleMic = document.querySelector('.toggle-mic');
 const toggleVideo = document.querySelector('.toggle-video');
 
+if(JSON.parse(localStorage.getItem('video'))) { 
+    setVideoEnable();
+    toggleVideo.classList.remove('disable');
+} else {
+    setVideoDisable();
+    toggleVideo.classList.add('disable');
+}
+
+if(JSON.parse(localStorage.getItem('audio'))) {
+    setUnmute();
+    toggleMic.classList.remove('disable');
+}else {
+    setMute();
+    toggleMic.classList.add('disable');
+}
+
 toggleMic.addEventListener('click',()=>{
     toggleMute();
     toggleMic.classList.toggle('disable');
     if(toggleMic.classList.contains('disable')) {
-        toggleMic.innerHTML = `
-            <i class="material-icons">
-                mic_off
-            </i>
-        `;
+        setMute();
     }else {
-        toggleMic.innerHTML = `
-            <i class="material-icons">
-                mic_none
-            </i>
-        `;
+        setUnmute();
     }
 })
 
@@ -143,19 +164,39 @@ toggleVideo.addEventListener('click',()=>{
     toggleVideoStream();
     toggleVideo.classList.toggle('disable');
     if(toggleVideo.classList.contains('disable')) {
-        toggleVideo.innerHTML = `
-            <i class="material-icons">
-                videocam_off
-            </i>
-        `;
+        setVideoDisable();
     }else {
-        toggleVideo.innerHTML = `
-            <i class="material-icons">
-                videocam
-            </i>
-        `;
+        setVideoEnable();
     }
 });
+function setMute() {
+    toggleMic.innerHTML = `
+        <i class="material-icons">
+            mic_off
+        </i>
+    `;
+}
+function setUnmute() {
+    toggleMic.innerHTML = `
+        <i class="material-icons">
+            mic_none
+        </i>
+    `;
+}
+function setVideoEnable() {
+    toggleVideo.innerHTML = `
+        <i class="material-icons">
+            videocam
+        </i>
+    `;
+}
+function setVideoDisable() {
+    toggleVideo.innerHTML = `
+        <i class="material-icons">
+            videocam_off
+        </i>
+    `;
+}
 
 const tools = document.querySelector('.tools');
 const main = document.querySelector('.screen main');
