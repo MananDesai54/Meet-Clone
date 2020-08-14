@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const communication = require('./socket/socket');
 const { ExpressPeerServer } = require('peer');
-const multer = require('multer');
+// const multer = require('multer');
 
 const app = express();
 const server = require('http').Server(app);
@@ -15,19 +15,19 @@ const peerServer = ExpressPeerServer(server,{
 });
 
 //multer setup
-const storage = multer.diskStorage({
-    destination:'/upload',
-    filename:(req,file,cb)=>{
-        cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname))
-    }
-});
+// const storage = multer.diskStorage({
+//     destination:'/upload',
+//     filename:(req,file,cb)=>{
+//         cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+//     }
+// });
 
-const upload = multer({
-    storage:storage,
-    limits:{
-        fileSize:1000000000
-    }
-}).single('file');
+// const upload = multer({
+//     storage:storage,
+//     limits:{
+//         fileSize:1000000000
+//     }
+// }).single('file');
 
 app.use('/peerjs',peerServer);
 app.use(bodyParser.urlencoded({
@@ -41,22 +41,22 @@ app.use(express.static(path.join(__dirname,'public')))
 
 //Routes
 app.use('/',require('./routes/routes'));
-app.get('/upload/:roomId',(req,res) => {
-    upload(req,res,(err)=>{
-        if(err) {
-            console.log(err);
-            res.redirect('/room/'+req.params.roomId);
-        }else {
-            if(req.file===undefined) {
-                console.log('not found')
-                res.redirect('/room/'+req.params.roomId);
-            }else {
-                console.log(req.file);
-                res.redirect('/room/'+req.params.roomId);
-            }
-        }
-    })
-})
+// app.get('/upload/:roomId',(req,res) => {
+//     upload(req,res,(err)=>{
+//         if(err) {
+//             console.log(err);
+//             res.redirect('/room/'+req.params.roomId);
+//         }else {
+//             if(req.file===undefined) {
+//                 console.log('not found')
+//                 res.redirect('/room/'+req.params.roomId);
+//             }else {
+//                 console.log(req.file);
+//                 res.redirect('/room/'+req.params.roomId);
+//             }
+//         }
+//     })
+// })
 
 //socket conversation
 io.on('connection', socket => {
