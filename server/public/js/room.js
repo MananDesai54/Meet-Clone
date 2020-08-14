@@ -225,10 +225,19 @@ closeChat.addEventListener('click',()=>{
 
 const message = document.getElementById('message');
 const sendBtn = document.getElementById('send-message-btn');
+const fileSelect = document.getElementById('fileUpload');
 sendBtn.disabled = true;
 
-message.addEventListener('input',(e)=>{
+fileSelect.addEventListener('change',(e)=>{
     if(e.target.value.trim() !== '') {
+        sendBtn.disabled = false;
+    } else {
+        sendBtn.disabled = true;
+    }
+})
+
+message.addEventListener('input',(e)=>{
+    if(e.target.value.trim() !== '' || fileSelect.value.trim() !== '') {
         sendBtn.disabled = false;
     } else {
         sendBtn.disabled = true;

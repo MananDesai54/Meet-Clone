@@ -26,4 +26,4 @@ const takeScreenShot = () => {
 }
 
 const screenCaptureBtn = document.querySelector('.screenshot');
-screenCaptureBtn.addEventListener('click',takeScreenShot);
+// screenCaptureBtn.addEventListener('click',takeScreenShot);

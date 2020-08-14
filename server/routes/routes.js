@@ -10,7 +10,7 @@ router.get('/start-meeting/:roomId',(req,res)=>{
     res.render('setup',{
         roomId:data
     });
-});
+})
 
 router.get('/room/:roomId',(req,res)=>{
     const setup = req.params.roomId;
@@ -19,7 +19,7 @@ router.get('/room/:roomId',(req,res)=>{
     res.render('room',{
         roomId:setup,
     });
-})
+});
 
 router.post('/join-meeting',(req,res)=>{
     console.log(req.body);

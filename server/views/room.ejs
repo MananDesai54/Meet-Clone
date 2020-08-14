@@ -15,6 +15,8 @@
     <script src="/js/screenCapture.js" defer></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js" integrity="sha512-OqcrADJLG261FZjar4Z6c4CfLqd861A3yPNMb+vRQ2JwzFT49WT4lozrh3bcKxHxtDTgNiqgYbEUStzvZQRfgQ==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
     <div class="tools">
@@ -85,9 +87,9 @@
             <i class="material-icons" id="close-chat">
                 close
             </i>
-            <h3>
+            <p style="font-size: 1.3rem;">
                 Meeting details
-            </h3>
+            </p>
             <div class="select">
                 <div class="people" id="people">
                     <i class="material-icons" style="margin-right: 2px;">
@@ -105,12 +107,28 @@
             <div class="chat-messages" id="chat-messages">
             
             </div>
-            <form class="send-message" id="send-message">
-                <input type="text" name="message" id="message" placeholder="Send a message to everyone">
-                <button type="submit" id="send-message-btn" disabled>
-                    <i class="material-icons">
-                        send
-                    </i>
+            <form class="send-message" id="send-message" style="flex-direction: column;">
+                <div class="message-box">
+                    <input type="text" name="message" id="message" placeholder="Send a message to everyone">
+                    <button type="submit" id="send-message-btn" disabled>
+                        <i class="material-icons">
+                            send
+                        </i>
+                    </button>
+                </div>
+            </form>
+            <form action="/upload/<%= roomId %> ">
+                <div class="file-field input-field">
+                    <div class="btn grey">
+                        <span>File</span>
+                        <input type="file" name="file" id="fileUpload">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                    </div>
+                </div>
+                <button class="btn grey waves-effect waves-light" type="submit">
+                    Upload
                 </button>
             </form>
         </div>

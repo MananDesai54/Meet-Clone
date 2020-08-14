@@ -232,24 +232,28 @@ body:hover .controls {
 }
 .send-message {
     display: flex;
-    align-items: center;
+    justify-content: center;
     border-top: 1px solid #ddd;
     padding-top: 0.2rem;
+    margin-bottom: 0.4rem;
 }
-.send-message input {
+.send-message .message-box {
+    display: flex;
+}
+.send-message .message-box input {
     flex: 1;
     border: none;
     border-bottom: 1px solid #eee;
     padding: 0.5rem;
 }
-.send-message input::placeholder {
+.send-message .message-box input::placeholder {
     color: #ddd;
 }
-.send-message input:focus {
+.send-message .message-box input:focus {
     border-bottom: 2px solid #00796b;
     transition: all 400ms;
 }
-.send-message button {
+.send-message .message-box button {
     border: none;
     background: none;
     color: #00796b;
@@ -260,11 +264,11 @@ body:hover .controls {
     transition: all 400ms;
     border-radius: 50%;
 }
-.send-message button:not(:disabled):hover {
+.send-message .message-box button:not(:disabled):hover {
     background: #eee;
     transition: all 400ms;
 }
-.send-message button:disabled {
+.send-message .message-box button:disabled {
     color: #ddd;
     cursor: not-allowed;
 }
