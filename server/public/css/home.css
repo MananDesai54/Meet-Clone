@@ -122,14 +122,23 @@ section img {
     }
 }
 @media(max-width:800px) {
+    * {
+        overflow: auto;
+    }
+    header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     body {
-        overflow: visible;
+        overflow: scroll;
         padding-bottom: 2rem;
     }
     section {
         grid-template-columns: 1fr;
         grid-auto-rows: 1fr;
         padding-bottom: 2rem;
+        height: 100%;
     }
     section .image {
         margin: 2rem;
